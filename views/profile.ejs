@@ -1,0 +1,176 @@
+<% include ./partials/header.ejs %>
+
+  <style>
+
+    #settings-div{
+      display: none;
+    }
+
+    #settings-div>.set{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: gilroy;
+        cursor: pointer;
+    }
+
+    #settings-div>.set>a{
+      text-decoration: none;
+      color: white;
+    }
+
+    .title{
+      display: flex;
+      align-items: center;
+    }
+
+    .profimg{
+      width: 2vw;
+      height: 2vw;
+      border-radius: 50%;
+      /* background: black; */
+      overflow: hidden;
+    }
+
+    .profimg>img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .title>h5{
+      font-family: gilroy;
+      margin-left: 10px;
+      margin-top: 5px;
+    }
+
+    .card{
+      width: 50%;
+      margin-top:2%;
+      margin-left: 5%;
+    }
+
+  </style>
+
+
+    <div id="main">
+        <div style="position: fixed;" id="left">
+          <div id="searchdiv">
+            <div id="side">
+                <div id="insta">
+                  <a href="/home">
+                    <i class="ri-instagram-line"></i>
+                  </a>
+                </div>
+                <div id="icons">
+                  <a href="/home"><i class="ri-home-5-line"></i></a>
+                  <a href="/search"><i class="ri-search-line"></i></a>
+                  <a href="#"><i class="ri-compass-line"></i></a>
+                  <a href="#"><i class="ri-message-3-line"></i></a>
+                  <a href="/message"><i class="ri-chat-3-fill"></i></a>
+                  <a href="#"><i class="ri-heart-line"></i></a>
+                  <a href="/createpost"><i class="ri-file-add-line"></i></a>
+                  <a href="/profile" style="margin-left: 10px;" class="circle"><img src="/images/uploads/<%= users.profileimage %>" alt=""></a>
+                </div>
+                <div id="menu">
+                  <a href="#"><i class="ri-menu-line"></i></a>
+                </div>
+            </div>
+            <div id="remain">
+              <h2 style="padding: 10px; position: absolute; top: 3.3%; color: white;">Search</h2>
+              <div id="nave">
+                <input type="text" name="Search" placeholder="Search" id="Search">
+                <div id="submitent">
+            
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <img style="width: 8vw; height: 6vh; margin-top: 35px; margin-left: 25px;"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png" alt="">
+          <a href="/home" style="text-decoration: none; color: black; margin-top: 20px;"><i class="ri-home-5-line"></i>Home</a>
+          <button style=" color: black;" class="searchbtn"><i class="ri-search-line"></i>Search</button>
+          <a href="" style="text-decoration: none; color: black;"><i class="ri-compass-line"></i>Explore</a>
+          <a href="" style="text-decoration: none; color: black;"><i class="ri-message-3-line"></i>Reel</a>
+          <a href="/message" style="text-decoration: none; color: black;"><i class="ri-chat-3-fill"></i>Message</a>
+          <a href="" style="text-decoration: none; color: black;"><i class="ri-heart-line"></i>Notification</a>
+          <a href="/createpost" style="text-decoration: none; color: black;"><i class="ri-file-add-line"></i></i>Create</a>
+          <a href="/profile" style="text-decoration: none; color: black;"><div class="circle"><img style=" margin-top: -5px; width: 100%; height: 100%; object-fit: cover;" src="/images/uploads/<%= users.profileimage %>" alt=""></div>Profile</a>
+        </div>
+        <div id="right">
+          <div id="container" style="top: 15%; width: 80%; left: 10%; height: 80%; position: absolute; ">
+            <div class="card" style="width: 100%; height: 100%" >
+              <div id="follow" style="display: flex;">
+                <div id="img" style="width: 15vw; height: 15vw; border-radius: 50%; margin-left: 50px; border: 1px solid black; overflow: hidden; margin-top: 50px;" class="card-img-top">
+                  <img style="width: 100%; height: 100%; object-fit: cover;" src="/images/uploads/<%= users.profileimage %>" alt="">
+                </div>
+                <div class="card-body" style="top: 10%; position: absolute; left: 33%; display: flex;">
+                  <h5 class="card-title">@<%= users.username %></h5>
+                  <a href="#" class="btn btn" style="margin-left: 20px; margin-top: -2px; font-size: 1vw; width: 110px; background: #000; color: white; border-radius: 10px;"> Edit profile</a>
+                  <a href="#" id="setting" style="position: absolute; right: -5%; font-size: 25px; margin-top: -5px; margin-left: 2%; color: #000; text-decoration: none;"><i class="ri-settings-5-line"></i></a>
+                </div>
+              </div>
+            </div>
+            <div id="settings-div" style="width: 10vw; height: 25vh; background: #000; color: white; position: absolute; right: 17.5%; top: 20%; border-radius: 10px; overflow: hidden;">
+              <div class="set" style="width: 100%; height: 25%; border-bottom: 1px solid white; " id="head1">Settings</div>
+              <div class="set" style="width: 100%; height: 25%; border-bottom: 1px solid white; " id="head2">Notification</div>
+              <div class="set" style="width: 100%; height: 25%; border-bottom: 1px solid white; " id="head3"><a href="/logout">Logout</a></div>
+              <div class="set" style="width: 100%; height: 25%;" id="head4">Cancle</div>
+            </div>
+          </div>
+        </div>
+      
+          <!-- <% post.forEach(function(elem){ %>
+            <div class="card" style="margin-left: 6vw;">
+              <div class="card-body">
+                <div class="title">
+                  <div class="profimg">
+                    <img src="/images/uploads/<%= users.profileimage %>" alt="">
+                  </div>
+                  <h5 class="card-title"><%= elem.users.username %></h5>
+                </div>
+              </div>
+              <img src="/images/uploads/<%= elem.postsimage %>" class="card-img-bottom" alt="...">
+              <div class="card-body">
+                <p class="card-text"><%= elem.postdets %></p>
+                <a href="/like/<%=elem._id%>" class="btn btn-primary">liked by (<%= elem.like.length %>) </a>
+              </div>
+            </div>
+          <% }) %> -->
+      
+      </div>
+
+
+
+
+
+
+
+
+      
+      <script>
+         var searchdiv = document.querySelector("#searchdiv")
+        var searchbtn = document.querySelector(".searchbtn")
+      
+        searchbtn.onclick= ()=>{
+          searchdiv.style.left='0%'
+        }
+      </script>
+
+      <script>
+          var settings = document.querySelector("#setting")
+          var div = document.querySelector("#settings-div")
+          var main = document.querySelector("#main")
+          var cancle = document.querySelector("#head4")
+          
+          settings.addEventListener("click", function(){
+            div.style.display = "initial"
+          })
+
+          cancle.addEventListener("click", function(){
+            div.style.display ="none";
+          })
+      </script>
+      
+      <% include ./partials/footer.ejs %>

