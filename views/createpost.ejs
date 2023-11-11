@@ -56,16 +56,32 @@
           </div> -->
           <div id="right">
             <form action="/posts" method="post" enctype="multipart/form-data">
-              <div id="block">
-                
+              <div id="block" style="display: flex; align-items: center; justify-content: center;">
+                <img style="width: 400px; height: 400px;margin-top: 100px; border-radius: 20px;" src="/images/uploads/WhatsApp Image 2023-10-18 at 15.50.47_423a18ec.jpg" alt="">
+                <button id="Select" style="width: 130px; height: 30px;background: red;margin-top: 23%; opacity: 0; position: absolute;"></button>
               </div>
-      </form>
+              <div id="comment" style="width: 700px;height: 400px;background: #262626; border-radius: 20px; position: absolute; top: 15%; left: 15%; display: none;">
+                  
+              </div>
+            </form>
+
+            <form action="/posts" method="POST" enctype="multipart/form-data">
+              <label for="postdets">Post Details:</label>
+              <textarea id="postdets" name="postdets" required></textarea>
+              <br>
+              
+              <label for="postsimage">Post Image:</label>
+              <input type="file" id="postsimage" name="postsimage" accept="image/*">
+              <br>
+          
+              <button type="submit">Create Post</button>
+            </form>
         </div>
         </div> 
       </div>
       
       <script>
-        var input = document.querySelector("#in");
+      var input = document.querySelector("#in");
       var submit = document.querySelector("#submit")
 
       document.querySelector("#Select").addEventListener("click", (e) => {
@@ -75,6 +91,7 @@
 
       input.addEventListener('change', () => {
         submit.click()
+        
       })
       </script>
 
@@ -129,22 +146,4 @@ var inp = document.querySelector("#Search")
         }
       
       </script>
-
-      <script>
-        var btn = document.querySelector("#btn-inpt")
-
-        function myfunction(){
-          document.querySelector("#inpt").click();
-
-          document.querySelector("#inpt").addEventListener("change",function(){
-            document.querySelector("#box-p").style.transform = `translateX(-100%)`;
-            document.querySelector("#box-p2").style.transform = `translateX(-100%)`;
-          })
-        }
-      </script>
-
-
-
-
-
       <% include ./partials/footer.ejs %>
