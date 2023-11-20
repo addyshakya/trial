@@ -8,8 +8,6 @@ var postModel = require('./posts.js');
 const localStrategy = require('passport-local');
 var multer = require('multer')
 var path = require('path');
-const users = require('./users');
-const posts = require('./posts.js');
 
 passport.use(new localStrategy(userModel.authenticate()))
 
@@ -208,12 +206,12 @@ router.get("/username/:username", (req, res) => {
   });
 });
 
-router.get('/show/:username',(req,res)=>{
-const regex = new RegExp("^" + req.params.username);
-  userModel.find({username:regex}).then((getUsers)=>{
-    res.json({allUsers:getUsers});
-  })
-})
+// router.get('/show/:username',(req,res)=>{
+// const regex = new RegExp("^" + req.params.username);
+//   userModel.find({username:regex}).then((getUsers)=>{
+//     res.json({allUsers:getUsers});
+//   })
+// })
 
 
 router.post('/login', passport.authenticate('local',{
