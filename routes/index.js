@@ -240,4 +240,23 @@ router.get('/oauth2/redirect/google', passport.authenticate('google', {
   failureRedirect: '/login'
 }));
 
+router.get('/edit', isLoggedIn, function(req,res,next){
+  userModel.findOne({username: req.session.passport.user})
+   .then(function(users){
+         console.log(users);
+         res.render("edit",{users})
+   })
+})
+
+router.post('/update',isLoggedIn,function(req,res,next){
+  userModel
+    .findOneAndUpdate({username:req.session.passport.user},{username: req.body.username},{new:true})
+    .then(function(updateuser){
+      req.login(updateuser,function(err){
+        if(err) {return next(err);}
+        return res.redirect('/profile');
+      })
+    })
+})
+
 module.exports = router;

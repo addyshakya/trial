@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Update your account</h3>
+    <form action="/update" method="post">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input disabled style="font-weight: 600;" name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email" value="<%= users.email %>">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Username</label>
+            <input id="username" name="username" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Username" value="<%= users.username %>">
+          </div>
+          <input id="submit" type="submit" class="btn btn-warning" value="Update Your Account">
+    </form>
+</body>
+</html>
