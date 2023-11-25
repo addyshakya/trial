@@ -115,23 +115,69 @@ router.get('/home', isLoggedIn ,function(req,res,next){
   })
 })
 
-router.get('/profile',isLoggedIn, function(req, res, next) {
-  userModel.findOne({username: req.session.passport.user})
-  .populate({
-    path: "posts",
-    populate:{
-      path: "users"
-    }
-  })
-  .then(function(users){
-    postModel.find()
-    .populate('users')
-    .then(function(post){
-      console.log(post);
-      res.render('profile', {users,post})
+// router.get('/profile',isLoggedIn, function(req, res, next) {
+//   userModel.findOne({username: req.session.passport.user})
+//   .populate({
+//     path: "posts",
+//     populate:{
+//       path: "users"
+//     }
+//   })
+//   .then(function(users){
+//     postModel.find()
+//     .populate('users')
+//     .then(function(post){
+//       console.log(post);
+//       res.render('profile', {users,post})
+//     })
+//   })
+// });
+
+router.get('/profile', isLoggedIn, async function (req, res, next) {
+  try {
+    const users = await userModel.findOne({ username: req.session.passport.user })
+      .populate({
+        path: "posts",
+        populate: {
+          path: "users"
+        }
+      });
+
+    const post = await postModel.find().populate('users');
+
+    const followingCount = users.following.length;
+    const followersCount = users.followers.length;
+    console.log(users)
+    res.render('profile', {
+      users,
+      post,
+      followingCount,
+      followersCount,
+      currentUser: req.user
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+router.post("/posts", isLoggedIn, upload.single('postsimage'), function(req,res,next){
+  userModel.findOne({username:req.session.passport.user})
+  .then(function(loggedInUser){
+    postModel.create({
+      postdets:req.body.postdets,
+      users:loggedInUser._id,
+      postsimage: req.file.filename,
+    })
+    .then(function(posts){
+      loggedInUser.posts.push(posts._id),
+      loggedInUser.save()
+      .then(function(post){
+        res.redirect("/home")
+      })
     })
   })
-});
+})
 
 router.get("/createpost",isLoggedIn, function(req,res,next){
   userModel.findOne({username:req.session.passport.user})
@@ -143,6 +189,7 @@ router.get("/createpost",isLoggedIn, function(req,res,next){
 router.get("/message", function(req,res){
   userModel.findOne({username:req.session.passport.user})
     .then(function(users){
+      console.log(users.username)
       res.render('message', {users})
     })
 })
@@ -185,7 +232,8 @@ router.post('/register', function(req, res, next) {
     username: req.body.username,
     email:req.body.email,
     number:req.body.number,
-    profileimage:req.body.profileimage
+    profileimage:req.body.profileimage,
+    bio:req.body.bio
   })
   userModel.register(userCreated,req.body.password)
     .then(function(u){
@@ -248,15 +296,26 @@ router.get('/edit', isLoggedIn, function(req,res,next){
    })
 })
 
-router.post('/update',isLoggedIn,function(req,res,next){
+router.post('/update', isLoggedIn, function(req, res, next) {
+  const updatedFields = {
+    username: req.body.username,
+    bio: req.body.bio
+  };
   userModel
-    .findOneAndUpdate({username:req.session.passport.user},{username: req.body.username},{new:true})
-    .then(function(updateuser){
-      req.login(updateuser,function(err){
-        if(err) {return next(err);}
+    .findOneAndUpdate({ username: req.session.passport.user }, updatedFields, { new: true })
+    .then(function(updateuser) {
+      req.login(updateuser, function(err) {
+        if (err) {
+          return next(err);
+        }
         return res.redirect('/profile');
-      })
+      });
     })
-})
+    .catch(function(err) {
+      console.error(err);
+      // Handle the error, e.g., send an error response to the client
+      return res.redirect('/profile'); // Redirect to the profile page even if there's an error
+    });
+});
 
 module.exports = router;

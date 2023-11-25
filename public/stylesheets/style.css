@@ -89,6 +89,7 @@
     /* background-color: aqua; */
     position: absolute;
     right: 0%;
+    top: 15%;
   }
 
   #searchdiv{
@@ -243,7 +244,14 @@
   border: none;
   background: white; 
   font-size: 1.7vw;
-  margin-left: -9px;
+  margin-left: 18px;
+}
+
+#share{
+  border: none;
+  background: white; 
+  font-size: 1.7vw;
+  margin-left: -10px;
 }
 
 #like-buttons{
@@ -251,7 +259,7 @@
   border: none;
   background: white; 
   font-size: 1.7vw;
-  margin-left: -35px;
+  margin-left: -10px;
   color: red;
 }
 

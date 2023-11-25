@@ -31,6 +31,7 @@
       margin-top:2%;
       margin-left: 5%;
     }
+    
 
   </style>
 
@@ -83,7 +84,7 @@
     <div id="right">
       
 
-      <% post.forEach(function(elem){ %>
+      <% post.reverse().forEach(function(elem){ %>
         <div class="card" style="margin-left: 6vw;">
           <div class="card-body">
             <div class="title">
@@ -96,8 +97,10 @@
           <img src="/images/uploads/<%= elem.postsimage %>" class="card-img-bottom" alt="...">
           <div class="card-body">
             <p class="card-text"><%= elem.postdets %></p>
-            <a href="/like/<%=elem._id%>"><button id="like-button"><i class="ri-heart-line"></i></button></a>
+            <!-- <a href="/like/<%=elem._id%>"><button id="like-button"><i class="ri-heart-line"></i></button></a> -->
             <a href="/like/<%=elem._id%>"><button id="like-buttons"><i class="ri-heart-fill"></i></button></a>
+            <button id="like-button"><i class="ri-chat-3-line"></i></button>
+            <button id="share"><i class="ri-share-forward-line"></i></button>
             <h6 style="color: black; text-decoration: none;"><%= elem.like.length %> likes </h6>
           </div>
         </div>
@@ -138,7 +141,6 @@ inp.addEventListener("input", function(){
   document.querySelector("#submitent").innerHTML = ``;
   }
   })
-
 
 
 </script>

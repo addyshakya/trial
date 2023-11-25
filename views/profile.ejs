@@ -54,7 +54,7 @@
 
 
     <div id="main">
-        <div style="position: fixed;" id="left">
+        <div style="position: fixed; z-index: 999999;" id="left">
           <div id="searchdiv">
             <div id="side">
                 <div id="insta">
@@ -98,7 +98,7 @@
           <a href="/createpost" style="text-decoration: none; color: black;"><i class="ri-file-add-line"></i></i>Create</a>
           <a href="/profile" style="text-decoration: none; color: black;"><div class="circle"><img style=" margin-top: -5px; width: 100%; height: 100%; object-fit: cover;" src="/images/uploads/<%= users.profileimage %>" alt=""></div>Profile</a>
         </div>
-        <div id="right">
+        <div id="right" style="position: fixed; top: 0%;">
           <div id="container" style="top: -1%; width: 98%; left: -3.5%; height: 40%; position: absolute; ">
             <div class="card" style="width: 100%; height: 100%" >
               <div id="follow" style="display: flex;">
@@ -108,7 +108,23 @@
                 <div class="card-body" style="top: 10%; position: absolute; left: 33%; display: flex;">
                   <h5 class="card-title">@<%= users.username %></h5>
                   <a href="/edit" class="btn btn" style="margin-left: 20px; margin-top: -2px; font-size: 1vw; width: 110px; background: #000; color: white; border-radius: 10px;"> Edit profile</a>
+                  <a href="" class="btn btn" style="margin-left: 10px; margin-top: -2px; font-size: 1vw; width: 110px; background: #000; color: white; border-radius: 10px;"> View Archive</a>
                   <a href="#" id="setting" style="position: absolute; right: -5%; font-size: 25px; margin-top: -5px; margin-left: 2%; color: #000; text-decoration: none;"><i class="ri-settings-5-line"></i></a>
+                </div>
+                <div id="followers" style="display: flex; position: absolute; top: 33%; left: 35%;">
+                  <% if (currentUser && users._id.toString() === currentUser._id.toString()) { %>
+                    <!-- Display following and followers counts for the logged-in user's own profile -->
+                    <p style="font-weight: 600;"><%= users.posts.length %> posts</p>
+                    <p style="margin-left: 10px; font-weight: 600;"><%= followersCount %> followers</p>
+                    <p style="margin-left: 10px; font-weight: 600;"><%= followingCount %> following</p>
+                  <% } else if (currentUser) { %>
+                    <!-- Display following and followers counts for other users' profiles -->
+                    <p>Followers: <%= followersCount %></p>
+                    <p>Following: <%= followingCount %></p>
+                  <% } %>
+                </div>
+                <div class="card-body" style="top: 70%; position: absolute; left: 33%; display: flex;">
+                  <h5 class="card-title"><%= users.bio %></h5>
                 </div>
               </div>
             </div>
@@ -119,19 +135,24 @@
               <div class="set" style="width: 100%; height: 25%;" id="head4">Cancle</div>
             </div>
           </div>
-          <hr>
           <div id="posted" style="position: absolute;top: 50%;">
-            <% post.forEach(function(elem){ %>
+            <!-- <% post.forEach(function(elem){ %>
+              <div class="card" style="margin-left: 6vw; width: 100px; height: 100px;">
+                <div style="width: 110px; height: 110px; background: white; padding: 5px; border: .7px solid black;">
+                  <img src="/images/uploads/<%= users.postsimage %>" class="card-img-bottom" alt="...">
+                </div>
+              </div>
+            <% }) %>-->
+            <% users.posts.forEach(function(elem){ %>
               <div class="card" style="margin-left: 6vw; width: 100px; height: 100px;">
                 <div style="width: 110px; height: 110px; background: white; padding: 5px; border: .7px solid black;">
                   <img src="/images/uploads/<%= elem.postsimage %>" class="card-img-bottom" alt="...">
                 </div>
               </div>
-            <% }) %>            
-          </div>  
+           <%  }) %>
           
-        </div>
-      
+          
+    
       
       </div>
 
@@ -143,6 +164,7 @@
           searchdiv.style.left='0%'
         }
       </script>
+      
 
       <script>
           var settings = document.querySelector("#setting")
